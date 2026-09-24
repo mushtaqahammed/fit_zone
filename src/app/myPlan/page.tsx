@@ -1,22 +1,27 @@
 "use client";
 
 import { PracticeContext } from "@/context/PracticeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IPractice } from "@/types/practiceTypes";
-import PracticeCard from "@/components/share/PracticeCard";
+
 import WorkoutCard from "@/components/share/ShortPracticeCard";
 
 const MyPlan = () => {
-  const { addToPlan,save } = useContext(PracticeContext);
+  const { addToPlan, save, deleteFromPlan, deleteFromSave } =
+    useContext(PracticeContext);
 
-  const totalExercises = addToPlan.length;
+  const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
-  const totalMinutes = addToPlan.reduce(
+  const currentPractices = activeTab === "plan" ? addToPlan : save;
+
+  const totalExercises = currentPractices.length;
+
+  const totalMinutes = currentPractices.reduce(
     (total, practice) => total + practice.duration,
     0,
   );
 
-  const totalCalories = addToPlan.reduce(
+  const totalCalories = currentPractices.reduce(
     (total, practice) => total + practice.caloriesBurned,
     0,
   );
@@ -60,71 +65,83 @@ const MyPlan = () => {
         </div>
       </div>
 
-      {/* name of each tab group should be unique */}
-
+      {/* Tabs */}
       <div className="mt-4">
-        {/* name of each tab group should be unique */}
         <div className="tabs tabs-lift">
+          {/* Today's Plan */}
           <input
             type="radio"
             name="my_tabs_3"
             className="tab"
             aria-label="Today's plan"
+            checked={activeTab === "plan"}
+            onChange={() => setActiveTab("plan")}
           />
-          <div className="tab-content bg-base-100 border-base-300 p-6">
+
+          <div className="tab-content border-base-300 bg-base-100 p-6">
             {addToPlan.length > 0 ? (
-              addToPlan.map((practice: IPractice) => {
-                return <WorkoutCard key={practice.id} practice={practice} />;
-              })
-            ) : (
-              <div className="flex `min-h-[300px]` flex-col items-center justify-center rounded-xl border border-gray-700 bg-[#15171c] p-8 text-center mt-4">
-                <h1 className="text-2xl font-bold text-white">
-                  NOTHING HERE YET
-                </h1>
-
-                <p className="mt-2 text-gray-400">
-                  Browse the library and add a lift to get today moving.
-                </p>
-
-                <button className="mt-5 rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300">
-                  Go to workouts
-                </button>
+              <div className="space-y-4">
+                {addToPlan.map((practice: IPractice) => {
+                  return (
+                    <WorkoutCard
+                      key={practice.id}
+                      practice={practice}
+                      onDelete={deleteFromPlan}
+                    />
+                  );
+                })}
               </div>
+            ) : (
+              <EmptyState />
             )}
           </div>
 
+          {/* Saved */}
           <input
             type="radio"
             name="my_tabs_3"
             className="tab"
-            aria-label="saved"
-            defaultChecked
+            aria-label="Saved"
+            checked={activeTab === "saved"}
+            onChange={() => setActiveTab("saved")}
           />
-          <div className="tab-content bg-base-100 border-base-300 p-6">
+
+          <div className="tab-content border-base-300 bg-base-100 p-6">
             {save.length > 0 ? (
-              save.map((practice: IPractice) => {
-                return <WorkoutCard key={practice.id} practice={practice} />;
-              })
-            ) : (
-              <div className="flex `min-h-[300px]` flex-col items-center justify-center rounded-xl border border-gray-700 bg-[#15171c] p-8 text-center mt-4">
-                <h1 className="text-2xl font-bold text-white">
-                  NOTHING HERE YET
-                </h1>
-
-                <p className="mt-2 text-gray-400">
-                  Browse the library and add a lift to get today moving.
-                </p>
-
-                <button className="mt-5 rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300">
-                  Go to workouts
-                </button>
+              <div className="space-y-4">
+                {save.map((practice: IPractice) => {
+                  return (
+                    <WorkoutCard
+                      key={practice.id}
+                      practice={practice}
+                      onDelete={deleteFromSave}
+                    />
+                  );
+                })}
               </div>
+            ) : (
+              <EmptyState />
             )}
           </div>
         </div>
       </div>
-
     </main>
+  );
+};
+
+const EmptyState = () => {
+  return (
+    <div className="mt-4 flex min-h-[300px] flex-col items-center justify-center rounded-xl border border-gray-700 bg-[#15171c] p-8 text-center">
+      <h1 className="text-2xl font-bold text-white">NOTHING HERE YET</h1>
+
+      <p className="mt-2 text-gray-400">
+        Browse the library and add a lift to get today moving.
+      </p>
+
+      <button className="mt-5 rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300">
+        Go to workouts
+      </button>
+    </div>
   );
 };
 

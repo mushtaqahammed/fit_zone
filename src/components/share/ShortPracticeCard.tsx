@@ -2,8 +2,12 @@ import { IPractice } from "@/types/practiceTypes";
 import Image from "next/image";
 import Button from "../practiceDetails/Button";
 
+interface WorkoutCardProps {
+  practice: IPractice;
+  onDelete: (id: number) => void;
+}
 
-const WorkoutCard = ({ practice }: { practice: IPractice }) => {
+const WorkoutCard = ({ practice, onDelete }: WorkoutCardProps) => {
   return (
     <div className="w-full rounded-2xl border border-gray-800 bg-[#11151d] p-4 text-white shadow-lg">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -39,13 +43,19 @@ const WorkoutCard = ({ practice }: { practice: IPractice }) => {
           </div>
         </div>
 
-   
-
         <button className="rounded-full border border-gray-600 px-5 py-2 text-sm font-medium transition hover:border-lime-400 hover:text-lime-400">
           View Details
         </button>
 
-      <Button/>
+        <Button />
+
+        {/* Delete Button */}
+        <button
+          onClick={() => onDelete(practice.id)}
+          className="rounded-full border border-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-500"
+        >
+          ✕
+        </button>
       </div>
     </div>
   );

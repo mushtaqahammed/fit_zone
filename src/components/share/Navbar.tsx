@@ -1,13 +1,16 @@
 import Link from "next/link";
-import React from "react";
+
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
+import NavButtonRight from "@/app/NavButtonRight/page";
+
 
 const Navbar = () => {
+   
   const Links = (
     <>
       <li>
-        <Link href="/practice">Workouts</Link>
+        <Link href="/">Workouts</Link>
       </li>
 
       <li>
@@ -64,13 +67,7 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="navbar-end gap-2">
-          <Link href="/myPlan" className="btn btn-sm">
-            Plan
-          </Link>
-
-          <Link href="/myPlan" className="btn btn-sm">
-            Saved
-          </Link>
+          <NavButtonRight/>
         </div>
       </div>
     </div>

@@ -1,7 +1,15 @@
-import Image from "next/image";
+import Practice from "@/components/homagePage/Practice";
+import Banner from "@/components/share/Banner";
+
+
 
 export default function Home() {
   return (
-    <h2>hoii</h2>
+    <div>
+         <Banner />
+    <Practice/>
+    </div>
+ 
+   
   );
 }

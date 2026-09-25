@@ -32,7 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <PracticeProvider>
           <Navbar />
           
-          <main className="flex-1">{children}</main>
+          {children}
 <FooterPage />
           <ToastContainer />
         </PracticeProvider>

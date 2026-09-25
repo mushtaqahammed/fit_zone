@@ -4,7 +4,6 @@ import { IPractice } from "@/types/practiceTypes";
 import Image from "next/image";
 import React from "react";
 
-
 interface IPracticeDetailPage {
   params: Promise<{
     id: string;
@@ -12,9 +11,14 @@ interface IPracticeDetailPage {
 }
 
 const getData = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fecting practices data", error);
+    return [];
+  }
 };
 
 const PracticeDetailPage = async ({ params }: IPracticeDetailPage) => {
@@ -25,9 +29,6 @@ const PracticeDetailPage = async ({ params }: IPracticeDetailPage) => {
   const practice = practiceData.find(
     (practice: IPractice) => String(practice.id) === String(id),
   ) as IPractice;
-
-
-  
 
   return (
     <section className="container mx-auto flex w-full max-w-7xl px-4 py-10 mb-10">

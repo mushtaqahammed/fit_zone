@@ -3,9 +3,14 @@ import PracticeCard from "@/components/share/PracticeCard";
 import { IPractice } from "@/types/practiceTypes";
 
 const getData = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fecting practices data", error);
+    return [];
+  }
 };
 
 const Practice = async () => {

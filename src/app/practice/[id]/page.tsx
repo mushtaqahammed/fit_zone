@@ -12,7 +12,10 @@ interface IPracticeDetailPage {
 
 const getData = async () => {
   try {
-   const res = await fetch(process.env.NEXT_PUBLIC_API_URL!);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/practiceData.json`,
+  );
+    console.log(res);
 
     if (!res.ok) {
       throw new Error("Failed to fetch practices data");

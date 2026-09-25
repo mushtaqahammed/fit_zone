@@ -3,18 +3,16 @@ import PracticeCard from "../share/PracticeCard";
 import { IPractice } from "@/types/practiceTypes";
 const getData = async () => {
   try {
-   const res = await fetch(process.env.NEXT_PUBLIC_API_URL!);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/practiceData.json`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch practices data");
     }
 
     const data = await res.json();
-
     return data;
   } catch (error) {
-    console.error("Error fetching practices data:", error);
-    return [];
+    console.error(error);
   }
 };
 

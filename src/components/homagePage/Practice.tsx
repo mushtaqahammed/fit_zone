@@ -32,7 +32,7 @@ const Practice = async () => {
 
       {/* Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {practiceData.map((practice: IPractice) => (
+        {practiceData?.map((practice: IPractice) => (
           <PracticeCard key={practice.id} practice={practice} />
         ))}
       </div>

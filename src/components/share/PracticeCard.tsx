@@ -18,7 +18,7 @@ const PracticeCard = ({ practice }: IPracticeCardProps) => {
           alt={practice.name}
           width={500}
           height={200}
-          className="h-[200px] w-[500px] object-cover"
+          className="``h-[200px] ``w-[500px] object-cover"
         />
 
         {/* Card Body */}

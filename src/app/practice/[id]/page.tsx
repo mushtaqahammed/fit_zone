@@ -30,7 +30,7 @@ const PracticeDetailPage = async ({ params }: IPracticeDetailPage) => {
   
 
   return (
-    <section className="container mx-auto px-4 py-10">
+    <section className="container mx-auto flex w-full max-w-7xl px-4 py-10 mb-10">
       <div className="overflow-hidden rounded-xl border border-gray-800 bg-[#101216] shadow-xl">
         <div className="grid gap-8 p-5 lg:grid-cols-2 lg:p-8">
           {/* ================= IMAGE ================= */}
@@ -170,13 +170,9 @@ const PracticeDetailPage = async ({ params }: IPracticeDetailPage) => {
 
             {/* ================= BUTTONS ================= */}
 
-
-            
             <div className="mt-6 flex flex-wrap gap-3">
               <AddToPlan practice={practice} />
-              <SaveForLater practice={practice}/>
-
-              
+              <SaveForLater practice={practice} />
             </div>
           </div>
         </div>

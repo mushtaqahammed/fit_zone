@@ -10,7 +10,7 @@ interface IPracticeCardProps {
 const PracticeCard = ({ practice }: IPracticeCardProps) => {
   return (
     <Link href={`/practice/${practice.id}`}>
-      <div className="overflow-hidden rounded-xl border border-gray-800 bg-[#15171c] shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+      <div className="overflow-hidden rounded-xl border border-gray-800 bg-[#15171c] shadow-sm transition hover:-translate-y-1 hover:shadow-lg ">
         {/* Image */}
         <figure className="relative h-52 w-full">
           <Image
@@ -57,13 +57,7 @@ const PracticeCard = ({ practice }: IPracticeCardProps) => {
           </div>
 
           {/* Difficulty */}
-          <div className="mt-3 flex items-center justify-between">
-            <span className="text-xs text-gray-500">Difficulty</span>
-
-            <span className="text-sm font-medium text-lime-400">
-              {practice.difficulty}
-            </span>
-          </div>
+          
         </div>
       </div>
     </Link>

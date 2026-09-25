@@ -15,9 +15,9 @@ DaisyUI
 React Icons
 Recharts
 4. 5 Key Features
-Workout Library
+Practice Library
 Users can browse and explore different workouts with details such as duration, calories, rating, and difficulty level.
-Workout Details
+practice Details
 Users can view detailed information about individual workouts before adding them to their plan.
 My Plan
 Users can add workouts to their personal workout plan and manage their selected exercises.

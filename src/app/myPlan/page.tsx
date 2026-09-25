@@ -5,10 +5,32 @@ import { useContext, useState } from "react";
 import { IPractice } from "@/types/practiceTypes";
 
 import WorkoutCard from "@/components/share/ShortPracticeCard";
+import Link from "next/link";
+import Practice from "../practice/page";
 
 const MyPlan = () => {
   const { addToPlan, save, deleteFromPlan, deleteFromSave } =
     useContext(PracticeContext);
+
+  const [sortBy, setSortBy] = useState<"Duration" | "Calories" | "Rating">(
+    "Duration",
+  );
+
+  const sortPractice = (Practice: IPractice[]) => {
+    const sortedPractice = [...Practice];
+
+    if (sortBy === "Duration") {
+      sortedPractice.sort((a, b) => b.duration - a.duration);
+    } else if (sortBy === "Rating") {
+      sortedPractice.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === "Calories") {
+      sortedPractice.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+    }
+    return sortedPractice;
+  };
+
+  const sortedTodayPlanPractice = sortPractice(addToPlan);
+  const sortedSavePractice = sortPractice(save);
 
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
@@ -67,61 +89,81 @@ const MyPlan = () => {
 
       {/* Tabs */}
       <div className="mt-4">
-        <div className="tabs tabs-lift">
+        <div className=" grid grid-cols-[90%_10%]">
           {/* Today's Plan */}
-          <input
-            type="radio"
-            name="my_tabs_3"
-            className="tab"
-            aria-label="Today's plan"
-            checked={activeTab === "plan"}
-            onChange={() => setActiveTab("plan")}
-          />
+          <div className="tabs tabs-lift ">
+            <input
+              type="radio"
+              name="my_tabs_3"
+              className="tab"
+              aria-label="Today's plan"
+              checked={activeTab === "plan"}
+              onChange={() => setActiveTab("plan")}
+            />
 
-          <div className="tab-content border-base-300 bg-base-100 p-6">
-            {addToPlan.length > 0 ? (
-              <div className="space-y-4">
-                {addToPlan.map((practice: IPractice) => {
-                  return (
-                    <WorkoutCard
-                      key={practice.id}
-                      practice={practice}
-                      onDelete={deleteFromPlan}
-                    />
-                  );
-                })}
-              </div>
-            ) : (
-              <EmptyState />
-            )}
+            <div className="tab-content border-base-300 bg-base-100 p-6">
+              {sortedTodayPlanPractice.length > 0 ? (
+                <div className="space-y-4">
+                  {sortedTodayPlanPractice.map((practice: IPractice) => {
+                    return (
+                      <WorkoutCard
+                        key={practice.id}
+                        practice={practice}
+                        onDelete={deleteFromPlan}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <EmptyState />
+              )}
+            </div>
+
+            {/* Saved */}
+            <input
+              type="radio"
+              name="my_tabs_3"
+              className="tab"
+              aria-label="Saved"
+              checked={activeTab === "saved"}
+              onChange={() => setActiveTab("saved")}
+            />
+
+            <div className="tab-content border-base-300 bg-base-100 p-6">
+              {sortedSavePractice.length > 0 ? (
+                <div className="space-y-4">
+                  {sortedSavePractice.map((practice: IPractice) => {
+                    return (
+                      <WorkoutCard
+                        key={practice.id}
+                        practice={practice}
+                        onDelete={deleteFromSave}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <EmptyState />
+              )}
+            </div>
           </div>
 
-          {/* Saved */}
-          <input
-            type="radio"
-            name="my_tabs_3"
-            className="tab"
-            aria-label="Saved"
-            checked={activeTab === "saved"}
-            onChange={() => setActiveTab("saved")}
-          />
-
-          <div className="tab-content border-base-300 bg-base-100 p-6">
-            {save.length > 0 ? (
-              <div className="space-y-4">
-                {save.map((practice: IPractice) => {
-                  return (
-                    <WorkoutCard
-                      key={practice.id}
-                      practice={practice}
-                      onDelete={deleteFromSave}
-                    />
-                  );
-                })}
-              </div>
-            ) : (
-              <EmptyState />
-            )}
+          <div>
+            <div className="relative">
+              <select
+                value={sortBy}
+                onChange={(e) =>
+                  setSortBy(
+                    e.target.value as "Duration" | "Calories" | "Rating",
+                  )
+                }
+                className="select select-success w-full appearance-none pr-10"
+              >
+                <option value="Duration">Duration</option>
+                <option value="Calories">Calories</option>
+                <option value="Rating">Rating</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -137,10 +179,11 @@ const EmptyState = () => {
       <p className="mt-2 text-gray-400">
         Browse the library and add a lift to get today moving.
       </p>
-
-      <button className="mt-5 rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300">
-        Go to workouts
-      </button>
+      <Link href="/practice">
+        <button className="mt-5 rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300">
+          Go to workouts
+        </button>
+      </Link>
     </div>
   );
 };

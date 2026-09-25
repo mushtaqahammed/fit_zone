@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/share/Navbar";
-import FooterPage from "@/components/share/Footer";
+
 import { ToastContainer } from "react-toastify";
 import PracticeProvider from "@/context/PracticeContext";
 
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           
           {children}
-<FooterPage />
+
           <ToastContainer />
         </PracticeProvider>
       </body>

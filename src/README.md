@@ -12,8 +12,7 @@ React
 TypeScript
 Tailwind CSS
 DaisyUI
-React Icons
-Recharts
+
 4. 5 Key Features
 Practice Library
 Users can browse and explore different workouts with details such as duration, calories, rating, and difficulty level.

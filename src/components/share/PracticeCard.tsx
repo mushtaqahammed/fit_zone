@@ -12,14 +12,14 @@ const PracticeCard = ({ practice }: IPracticeCardProps) => {
     <Link href={`/practice/${practice.id}`}>
       <div className="overflow-hidden rounded-xl border border-gray-800 bg-[#15171c] shadow-sm transition hover:-translate-y-1 hover:shadow-lg ">
         {/* Image */}
-        <figure className="relative h-52 w-full">
-          <Image
-            src={practice.image}
-            alt={practice.name}
-            fill
-            className="object-cover"
-          />
-        </figure>
+
+        <Image
+          src={practice.image}
+          alt={practice.name}
+          width={500}
+          height={200}
+          className="h-[200px] w-[500px] object-cover"
+        />
 
         {/* Card Body */}
 
@@ -57,7 +57,6 @@ const PracticeCard = ({ practice }: IPracticeCardProps) => {
           </div>
 
           {/* Difficulty */}
-          
         </div>
       </div>
     </Link>

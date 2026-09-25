@@ -16,7 +16,9 @@ const WorkoutCard = ({ practice, onDelete }: WorkoutCardProps) => {
           <Image
             src={practice.image}
             alt={practice.name}
-            fill
+            height={100}
+            width={100}
+           
             className="object-cover"
           />
         </div>

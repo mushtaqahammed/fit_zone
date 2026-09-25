@@ -3,7 +3,7 @@ import SaveForLater from "@/components/practiceDetails/SaveForLater";
 import { IPractice } from "@/types/practiceTypes";
 import Image from "next/image";
 import React from "react";
-import { toast } from "react-toastify";
+
 
 interface IPracticeDetailPage {
   params: Promise<{

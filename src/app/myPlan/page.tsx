@@ -6,7 +6,7 @@ import { IPractice } from "@/types/practiceTypes";
 
 import WorkoutCard from "@/components/share/ShortPracticeCard";
 import Link from "next/link";
-import Practice from "../practice/page";
+
 
 const MyPlan = () => {
   const { addToPlan, save, deleteFromPlan, deleteFromSave } =

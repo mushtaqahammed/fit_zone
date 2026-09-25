@@ -3,24 +3,17 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
 import NavButtonRight from "@/app/NavButtonRight/page";
+import Linked from "./Link";
 
 
 const Navbar = () => {
    
   const Links = (
-    <>
-      <li>
-        <Link href="/">Workouts</Link>
-      </li>
-
-      <li>
-        <Link href="/myPlan">My Plan</Link>
-      </li>
-    </>
+<Linked/>
   );
 
   return (
-    <div className="sticky top-0 z-50 bg-base-100 shadow-sm">
+    <div className=" sticky top-0 z-50 bg-base-100 shadow-sm ">
       <div className="navbar container mx-auto px-4">
         {/* Navbar Start */}
         <div className="navbar-start">
@@ -67,7 +60,7 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="navbar-end gap-2">
-          <NavButtonRight/>
+          <NavButtonRight />
         </div>
       </div>
     </div>

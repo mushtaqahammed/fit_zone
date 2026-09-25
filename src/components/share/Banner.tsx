@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import BannerImg from "@/assets/banner.png";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -15,7 +16,8 @@ const Banner = () => {
 
           {/* Main Heading */}
           <h1 className="text-3xl font-bold">
-            TRAIN WITH INTENT.LOG  <br />EVERY SET.
+            TRAIN WITH INTENT.LOG <br />
+            EVERY SET.
           </h1>
 
           {/* Description */}
@@ -25,9 +27,11 @@ const Banner = () => {
           </p>
 
           {/* Button */}
-          <button className="mt-6 rounded-md border border-lime-400 bg-lime-400 px-5 py-2 text-xs font-bold uppercase text-black transition hover:bg-lime-300">
-            Browse Workouts 
-          </button>
+          <Link href="/practice">
+            <button className="mt-6 rounded-md border border-lime-400 bg-lime-400 px-5 py-2 text-xs font-bold uppercase text-black transition hover:bg-lime-300">
+              Browse Workouts
+            </button>
+          </Link>
         </div>
 
         {/* Right Image */}

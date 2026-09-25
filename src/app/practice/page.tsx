@@ -17,7 +17,7 @@ const Practice = async () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold uppercase text-white">The Library</h1>
 
-        <p className="mt-1 text-sm text-gray-400">
+        <p className="mt-1 text-sm ">
           Twelve lifts covering every major muscle group.
         </p>
       </div>

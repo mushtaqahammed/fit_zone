@@ -1,6 +1,7 @@
 import { IPractice } from "@/types/practiceTypes";
 import Image from "next/image";
 import Button from "../practiceDetails/Button";
+import Link from "next/link";
 
 interface WorkoutCardProps {
   practice: IPractice;
@@ -43,9 +44,11 @@ const WorkoutCard = ({ practice, onDelete }: WorkoutCardProps) => {
           </div>
         </div>
 
-        <button className="rounded-full border border-gray-600 px-5 py-2 text-sm font-medium transition hover:border-lime-400 hover:text-lime-400">
-          View Details
-        </button>
+        <Link href={`/practice/${practice.id}`}>
+          <button className="rounded-full border border-gray-600 px-5 py-2 text-sm font-medium transition hover:border-lime-400 hover:text-lime-400">
+            View Details
+          </button>
+        </Link>
 
         <Button />
 

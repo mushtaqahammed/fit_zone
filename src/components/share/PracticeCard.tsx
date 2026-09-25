@@ -65,7 +65,7 @@ const PracticeCard = ({ practice }: IPracticeCardProps) => {
             </span>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </Link>
   );
 };

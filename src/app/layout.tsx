@@ -31,12 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <PracticeProvider>
           <Navbar />
-
+          
           <main className="flex-1">{children}</main>
-
+<FooterPage />
           <ToastContainer />
-
-          <FooterPage />
         </PracticeProvider>
       </body>
     </html>

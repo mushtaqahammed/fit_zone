@@ -2,7 +2,7 @@ import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
+const FooterPage = () => {
   return (
     <footer className="mt-auto w-full border-t border-gray-700 bg-[#15171c]">
       <div className="container mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4">
@@ -20,4 +20,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterPage;

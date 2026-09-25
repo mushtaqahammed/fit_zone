@@ -25,7 +25,7 @@ export const PracticeContext = createContext<IPracticeContext>({
   deleteFromSave: () => {},
 });
 
-const BookProvider = ({ children }: { children: ReactNode }) => {
+const PracticeProvider = ({ children }: { children: ReactNode }) => {
   const [addToPlan, setAddToPlan] = useState<IPractice[]>([]);
   const [save, setSave] = useState<IPractice[]>([]);
 
@@ -55,4 +55,4 @@ const BookProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default BookProvider;
+export default PracticeProvider;
